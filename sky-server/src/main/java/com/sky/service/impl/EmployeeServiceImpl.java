@@ -3,6 +3,7 @@ package com.sky.service.impl;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
+import com.sky.context.BaseContext;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.entity.Employee;
@@ -61,7 +62,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee save(EmployeeDTO employeeDTO) {
+    public void save(EmployeeDTO employeeDTO) {
+        System.out.println("Current Thread id:" + Thread.currentThread().getId());
+
         Employee employee = new Employee();
 
         BeanUtils.copyProperties(employeeDTO, employee);
@@ -73,13 +76,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setCreateTime(LocalDateTime.now());
         employee.setUpdateTime(LocalDateTime.now());
 
-        //TODO update to existing login user id
-        employee.setCreateUser(10L);
-        employee.setUpdateUser(10L);
+        // ThreadLocal pattern to store and retrieve the current login user ID
+        employee.setCreateUser(BaseContext.getCurrentId());
+        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
-
-        return null;
     }
 
 }

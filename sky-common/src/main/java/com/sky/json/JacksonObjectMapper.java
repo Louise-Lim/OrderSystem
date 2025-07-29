@@ -18,9 +18,14 @@ import java.time.format.DateTimeFormatter;
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 
 /**
- * 对象映射器:基于jackson将Java对象转为json，或者将json转为Java对象
- * 将JSON解析为Java对象的过程称为 [从JSON反序列化Java对象]
- * 从Java对象生成JSON的过程称为 [序列化Java对象到JSON]
+ * Object Mapper: Uses Jackson to convert Java objects to JSON,
+ * or JSON to Java objects.
+ *
+ * The process of converting JSON into a Java object is called
+ * [deserializing JSON into a Java object].
+ *
+ * The process of generating JSON from a Java object is called
+ * [serializing a Java object into JSON].
  */
 public class JacksonObjectMapper extends ObjectMapper {
 

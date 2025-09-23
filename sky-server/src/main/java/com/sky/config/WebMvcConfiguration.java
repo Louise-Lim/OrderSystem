@@ -64,13 +64,16 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     }
 
     /**
-     * 设置静态资源映射
+     * Configure static resource mapping
      * @param registry
      */
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        log.info("开始设置静态资源映射...");
+        log.info("Starting static resource mapping...");
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("file:C:/Users/ASUS/Downloads/Ordering/sky-take-out/sky-server/src/main/resources/upload/");
     }
 
     /**

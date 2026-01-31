@@ -1,6 +1,12 @@
+# build output
 **/target/
-.idea
+
+# IDE
+.idea/
 *.iml
+
+# compiled files
 *.class
-*Test.java
-**/test/
+
+# logs
+*.log

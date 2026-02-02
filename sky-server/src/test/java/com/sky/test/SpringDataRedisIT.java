@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
-public class SpringDataRedisTest {
+public class SpringDataRedisIT {
 
     @Autowired
     private RedisTemplate redisTemplate;

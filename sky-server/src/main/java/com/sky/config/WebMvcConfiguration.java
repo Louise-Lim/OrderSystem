@@ -43,21 +43,46 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     }
 
     /**
-     * 通过knife4j生成接口文档
+     * API documentation generated using Knife4j
      * @return
      */
     @Bean
-    public Docket docket() {
-        log.info("准备生成接口文档...");
+    public Docket docketUser() {
+        log.info("Preparing to generate API documentation...");
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("苍穹外卖项目接口文档")
+                .title("Project API Documentation")
                 .version("2.0")
-                .description("苍穹外卖项目接口文档")
+                .description("Project API Documentation")
                 .build();
+
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName("Amin API")
                 .apiInfo(apiInfo)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sky.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.sky.controller.admin"))
+                .paths(PathSelectors.any())
+                .build();
+        return docket;
+    }
+
+    /**
+     * API documentation generated using Knife4j
+     * @return
+     */
+    @Bean
+    public Docket docketAdmin() {
+        log.info("Preparing to generate API documentation...");
+        ApiInfo apiInfo = new ApiInfoBuilder()
+                .title("Project API Documentation")
+                .version("2.0")
+                .description("Project API Documentation")
+                .build();
+
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName("User API")
+                .apiInfo(apiInfo)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.sky.controller.user"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;
